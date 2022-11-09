@@ -10,4 +10,6 @@ urlpatterns = [
     path('testimonials/', views.testimonials, name="testimonials"),
     path('login/', views.LoginView, name="login"),
 
+    path("contact-us", views.contact_us, name="contact_us"),
+
 ]
