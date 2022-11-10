@@ -14,6 +14,9 @@ class About(models.Model):
     contact_description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    facebook = models.URLField()
+    linkedin = models.URLField(blank=True)
+    youtube = models.URLField(blank=True)
 
     def __str__(self):
         return self.name

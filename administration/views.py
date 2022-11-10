@@ -15,9 +15,7 @@ def about(request):
 
 
 def contact(request):
-    about = About.objects.all().first()
-    print(about)
-    return render(request, "main/contact.html", {"about": about})
+    return render(request, "main/contact.html")
 
 
 def team(request):
