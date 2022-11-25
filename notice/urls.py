@@ -3,5 +3,6 @@ from notice import views
 
 
 urlpatterns = [
-    path("", views.notice, name="notice")
+    path("", views.NoticeListView.as_view(), name="notice"),
+    # path("subscriber/", views.SubscriberCreate.as_view(), name="subscribe")
     ]
