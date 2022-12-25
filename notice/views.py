@@ -2,6 +2,11 @@ from django.shortcuts import render, redirect
 from notice.forms import SubscriberForm
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
 from notice.models import Notice
+from django.shortcuts import render
+from notice.forms import SubscriberForm
+from django.views.generic import ListView, CreateView
+from notice.models import Notice,Subscriber
+
 
 # Create your views here.
 class NoticeListView(ListView):
@@ -27,3 +32,5 @@ def subscriber_form(request):
 
     context['form'] = form
     return render(request, "main/index.html", context)
+
+

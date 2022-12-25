@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
-from system.models import ConfigChoice
+# from system.models import ConfigChoice
 from django.db.transaction import atomic
 from django.contrib.auth.models import (
     AbstractBaseUser, PermissionsMixin, BaseUserManager
@@ -37,7 +37,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     email = models.EmailField(max_length=40, unique=True)
     name = models.CharField(max_length=30, blank=True)
-    user_type = models.ForeignKey(ConfigChoice, on_delete=models.SET_NULL, null=True, blank=True)
+    # user_type = models.ForeignKey(ConfigChoice, on_delete=models.SET_NULL, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_visible = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)

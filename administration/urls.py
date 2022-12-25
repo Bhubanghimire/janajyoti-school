@@ -11,5 +11,6 @@ urlpatterns = [
     path('login/', views.LoginView, name="login"),
 
     path("contact-us", views.contact_us, name="contact_us"),
+    path("subscriber/", views.SubscriberCreate, name="subscribe")
 
 ]
