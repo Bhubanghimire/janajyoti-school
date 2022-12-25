@@ -1,4 +1,6 @@
 from django.db import models
+from system.models import ConfigChoice
+
 
 # Create your models here.
 class About(models.Model):
@@ -31,3 +33,16 @@ class ContactUs(models.Model):
 
     def __str__(self):
         return self.name
+
+class Staff(models.Model):
+    first_name = models.CharField(max_length=100)
+    middle_name = models.CharField(max_length=100, blank=True)
+    last_name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to = "staff")
+    position = models.ForeignKey(ConfigChoice, on_delete=models.CASCADE, null=True)
+    facebook = models.URLField()
+    contact = models.CharField(max_length=10)
+    instagram = models.CharField(max_length=30, null=True, blank=True)
+
+    def __str__(self):
+        return self.first_name

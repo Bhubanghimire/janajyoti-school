@@ -13,7 +13,7 @@ class Notice(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     description = models.TextField()
     publish_date = models.DateField()
-    created_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['-id']
@@ -29,9 +29,3 @@ class Subscriber(models.Model):
     def __str__(self):
         return self.email
 
-class Subscriber(models.Model):
-    email = models.EmailField(unique=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.email

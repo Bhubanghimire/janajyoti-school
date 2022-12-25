@@ -1,5 +1,5 @@
 from django.contrib import admin
-from administration.models import ContactUs, About
+from administration.models import ContactUs, About, Staff
 
 
 # Register your models here.
@@ -9,4 +9,8 @@ class ContactUSAdmin(admin.ModelAdmin):
 
 @admin.register(About)
 class AboutAdmin(admin.ModelAdmin):
+    list_display = ["id"]
+
+@admin.register(Staff)
+class StaffAdmin(admin.ModelAdmin):
     list_display = ["id"]

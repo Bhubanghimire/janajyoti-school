@@ -19,7 +19,7 @@ class ConfigChoice(models.Model):
     category = models.ForeignKey(ConfigCategory, on_delete=models.CASCADE, verbose_name="choice")
 
     def __str__(self):
-        return str(self.value)
+        return str(self.name)
 
     class Meta:
         verbose_name_plural = "CONFIG CHOICE"

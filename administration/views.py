@@ -2,12 +2,14 @@ from .forms import *
 from django.contrib.auth import authenticate
 from django.contrib.auth import logout, login
 from django.shortcuts import render, redirect
-from administration.models import ContactUs, About
+from administration.models import ContactUs, About, Staff
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
 from django.shortcuts import render
 from notice.forms import SubscriberForm
 from django.views.generic import ListView, CreateView
 from notice.models import Notice, Subscriber
+from django.views.decorators.csrf import csrf_exempt
+
 
 # Create your views here
 class HomeView(TemplateView):
@@ -16,13 +18,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         return context
-# Create your views here.
-# class SubscriberCreate(CreateView):
-#     model = Subscriber
-#     template_name = "main/index.html"
-#     form_class = SubscriberForm
-#     success_url = "/"
-from django.views.decorators.csrf import csrf_exempt
+
 
 @csrf_exempt
 def SubscriberCreate(request):
@@ -48,8 +44,10 @@ def contact(request):
     return render(request, "main/contact.html")
 
 
-def team(request):
-    return render(request, "main/team.html")
+class TeamListView(ListView):
+    model = Staff
+    context_object_name = "staff_list"
+    template_name =  "main/team.html"
 
 
 def testimonials(request):
