@@ -3,11 +3,15 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import logout, login
 from django.shortcuts import render, redirect
 from administration.models import ContactUs, About
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
 
+# Create your views here
+class HomeView(TemplateView):
+    template_name = "main/index.html"
 
-# Create your views here.
-def home(request):
-    return render(request, "main/index.html")
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        return context
 
 
 def about(request):

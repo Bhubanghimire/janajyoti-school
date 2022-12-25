@@ -1,4 +1,5 @@
 {%  extends 'base.html' %}
+{% load widget_tweaks %}
 {%  load static %}
 
  {%  block navbar %}
@@ -18,12 +19,12 @@
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">Not Found</h1>
+                    <h1 class="display-3 text-white animated slideInDown">Notice List</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
                             <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">404</li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Notice</li>
                         </ol>
                     </nav>
                 </div>
@@ -33,20 +34,60 @@
     <!-- Header End -->
 
 
-    <!-- 404 Start -->
-    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container text-center">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <i class="bi bi-exclamation-triangle display-1 text-primary"></i>
-                    <h1 class="display-1">404</h1>
-                    <h1 class="mb-4">Page Not Found</h1>
-                    <p class="mb-4">We’re sorry, the page you have looked for does not exist in our website! Maybe go to our home page or try to use a search?</p>
-                    <a class="btn btn-primary rounded-pill py-3 px-5" href="">Go Back To Home</a>
+   <section id="basic-vertical-layouts">
+    <div class="row">
+
+        <div class="col-md-7 col-12">
+            <div class="card">
+                <div class="col-md-15 col-28">
+                    <div class="card height-auto">
+                        <div class="card-body">
+
+
+                            <div class="notice-board-wrap">
+
+                                <div class="notice-list">
+                                    {% if result %}
+                                            <h2> {{result}}</h2>
+                                    {% endif %}
+                                    {% for i in topics %}
+                                    <div class="post-date bg-pink"><b>{{i.title}}</b></div>
+                                    <h6 class="notice-title">{{i.description}} ... <a href="{%  url 'notice_detail' i.pk %}">Read More</a></h6>
+                                    <div class="entry-meta"> {{i.publish_date}} /By:{{i.created_by}}</div>
+                                    <br>
+                                    {% endfor %}
+
+                                </div>
+
+                            </div>
+                        {% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- 404 End -->
+</section>
 
 {%  endblock %}
