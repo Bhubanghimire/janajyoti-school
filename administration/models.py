@@ -43,6 +43,19 @@ class Staff(models.Model):
     facebook = models.URLField()
     contact = models.CharField(max_length=10)
     instagram = models.CharField(max_length=30, null=True, blank=True)
+    active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.first_name
+
+class Testimonials(models.Model):
+    first_name = models.CharField(max_length=100)
+    middle_name = models.CharField(max_length=100, blank=True)
+    last_name = models.CharField(max_length=100)
+    profession = models.CharField(max_length=250)
+    image = models.ImageField(upload_to="staff")
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.first_name

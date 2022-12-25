@@ -2,7 +2,7 @@ from .forms import *
 from django.contrib.auth import authenticate
 from django.contrib.auth import logout, login
 from django.shortcuts import render, redirect
-from administration.models import ContactUs, About, Staff
+from administration.models import ContactUs, About, Staff, Testimonials
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView, TemplateView
 from django.shortcuts import render
 from notice.forms import SubscriberForm
@@ -17,6 +17,8 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
+        context["staffs"] = Staff.objects.filter(active=True)
+        context["testimonials"] = Testimonials.objects.all()
         return context
 
 
@@ -36,8 +38,14 @@ def home(request):
     return render(request, "main/index.html")
 
 
-def about(request):
-    return render(request, "main/about.html")
+class AboutView(TemplateView):
+
+    template_name = "main/about.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(AboutView, self).get_context_data(**kwargs)
+        context["staffs"] = Staff.objects.filter(active=True)
+        return context
 
 
 def contact(request):

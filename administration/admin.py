@@ -1,5 +1,5 @@
 from django.contrib import admin
-from administration.models import ContactUs, About, Staff
+from administration.models import ContactUs, About, Staff, Testimonials
 
 
 # Register your models here.
@@ -13,4 +13,8 @@ class AboutAdmin(admin.ModelAdmin):
 
 @admin.register(Staff)
 class StaffAdmin(admin.ModelAdmin):
+    list_display = ["id"]
+
+@admin.register(Testimonials)
+class TestimonialsAdmin(admin.ModelAdmin):
     list_display = ["id"]
