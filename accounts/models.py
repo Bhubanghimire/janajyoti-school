@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
+from django.utils.safestring import mark_safe
+
 from system.models import ConfigChoice
 from django.db.transaction import atomic
 from django.contrib.auth.models import (
@@ -60,3 +62,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.name
+
+    def name_in_multiple_lines(self):
+        return mark_safe(self.name + '<br>' + self.email)
