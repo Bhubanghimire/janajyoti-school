@@ -6,9 +6,9 @@ from system.models import ConfigChoice
 class About(models.Model):
     logo = models.ImageField(upload_to="logo")
     about_image = models.ImageField(upload_to="about")
-    name = models.TextField(max_length=250)
+    name = models.CharField(max_length=250)
     description = models.TextField()
-    phone = models.TextField()
+    phone = models.CharField(max_length=20)
     email = models.EmailField()
     country = models.CharField(max_length=250)
     district = models.CharField(max_length=250)
