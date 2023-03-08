@@ -55,7 +55,7 @@ def contact(request):
 class TeamListView(ListView):
     model = Staff
     context_object_name = "staff_list"
-    template_name =  "main/team.html"
+    template_name = "main/team.html"
 
 
 def testimonials(request):
@@ -70,9 +70,7 @@ def LoginView(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        print(email)
         user = authenticate(request, email=email, password=password)
-        print(password)
         if user:
             login(request, user)
             return redirect('home')
